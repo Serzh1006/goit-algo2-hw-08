@@ -2,6 +2,7 @@ import time
 from typing import Dict
 import random
 
+
 class ThrottlingRateLimiter:
     def __init__(self, min_interval: float = 10.0):
         self.min_interval = min_interval
@@ -40,10 +41,10 @@ def test_throttling_limiter():
         result = limiter.record_message(str(user_id))
         wait_time = limiter.time_until_next_allowed(str(user_id))
 
-        print(f"Повідомлення {message_id:2d} | Користувач {user_id} | "
-              f"{'✓' if result else f'× (очікування {wait_time:.1f}с)'}")
-
-        # Випадкова затримка між повідомленнями
+        print(
+            f"Повідомлення {message_id:2d} | Користувач {user_id} | "
+            f"{'✓' if result else f'× (очікування {wait_time:.1f}с)'}"
+        )
         time.sleep(random.uniform(0.1, 1.0))
 
     print("\nОчікуємо 10 секунд...")
@@ -54,8 +55,10 @@ def test_throttling_limiter():
         user_id = message_id % 5 + 1
         result = limiter.record_message(str(user_id))
         wait_time = limiter.time_until_next_allowed(str(user_id))
-        print(f"Повідомлення {message_id:2d} | Користувач {user_id} | "
-              f"{'✓' if result else f'× (очікування {wait_time:.1f}с)'}")
+        print(
+            f"Повідомлення {message_id:2d} | Користувач {user_id} | "
+            f"{'✓' if result else f'× (очікування {wait_time:.1f}с)'}"
+        )
         time.sleep(random.uniform(0.1, 1.0))
 
 
